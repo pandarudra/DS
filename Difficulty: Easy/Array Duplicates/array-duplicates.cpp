@@ -6,17 +6,32 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    vector<int> findDuplicates(vector<int>& arr) {
-        unordered_set<int> s;
-        vector<int> res;
+    int majorityElement(vector<int>& arr) {
+        int n=arr.size();
+        int vote=0;
+        int candidate=-1;
         for(auto &it:arr){
-            if(s.count(it)){
-                res.push_back(it);
+            if(vote==0){
+                candidate=it;
+                vote++;
             }else{
-                s.insert(it);
+                if(it==candidate){
+                    vote++;
+                }else{
+                    vote--;
+                }
             }
         }
-        return res;
+        int freq=0;
+        for(auto &it:arr){
+            if(it==candidate){
+                freq++;
+            }
+        }
+        if(freq>(n/2)){
+            return candidate;
+        }
+        return -1;
     }
 };
 
