@@ -8,8 +8,8 @@ public:
             for(int j=i+1;j<n;j++){
                 int lenj=words[j].length();
                 if(len>lenj)continue;
-                string prefix=words[j].substr(0,len);
-                string suffix=words[j].substr(lenj-len,len);
+                string_view prefix=string_view(words[j]).substr(0,len);
+                string_view suffix=string_view(words[j]).substr(lenj-len,len);
                 if(prefix==suffix && prefix==words[i]){
                     cnt++;
                 }
