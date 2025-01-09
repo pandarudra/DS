@@ -46,10 +46,6 @@ private:
         return true;
     }
 public:
-    Solution(){
-        root = new trie();
-    }
-
     int prefixCount(vector<string>& words, string pref) {
         int cnt = 0;
         for( auto &str : words ){
