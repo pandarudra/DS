@@ -40,11 +40,9 @@ private:
             if(dummy->contains(prefix[i])){
                 dummy = dummy->gofurther(prefix[i]);
             }else{
-                root = new trie();
                 return false;
             }
         }
-        root = new trie();
         return true;
     }
 public:
@@ -55,6 +53,7 @@ public:
     int prefixCount(vector<string>& words, string pref) {
         int cnt = 0;
         for( auto &str : words ){
+            root = new trie();
             insert(str);
             if(search(pref)){
                 cnt++;
