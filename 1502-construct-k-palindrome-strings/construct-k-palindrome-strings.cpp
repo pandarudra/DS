@@ -1,14 +1,16 @@
 class Solution {
 public:
     bool canConstruct(string s, int k) {
-        if( k > s.length() ) return false ; 
-        unordered_map<char,int> mp ;
+        
+        if(k > s.length()) return false ; 
+        
+        vector<int> freq(26);
         for(auto &ch : s){
-            mp[ch]++ ;
+            freq[ch - 'a']++ ;
         }
         int cnt = 0 ;
-        for(const auto& it : mp){
-            cnt += (it.second % 2);
+        for(const auto& it : freq){
+            cnt += (it % 2);
         }
         return cnt <= k ;
     }
