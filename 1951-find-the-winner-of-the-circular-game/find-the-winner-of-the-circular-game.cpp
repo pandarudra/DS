@@ -1,15 +1,19 @@
 class Solution {
 public:
     int findTheWinner(int n, int k) {
-        vector<int> v(n) ;
-        for(int i = 0 ; i < n ; i++)v[i] = i+1 ;
-        int  t = n ;
-        int i = 0 ;
-        while(t != 1){
-            i = (i+k-1) % t ;
-            v.erase(v.begin() + i) ;
-            t-- ;
+        queue<int> q ;
+        for(int i = 1 ;i <= n ; i++)q.push(i) ;
+
+        while(q.size() != 1){
+            int cnt = 0 ;
+            while(cnt != k-1){
+                int in = q.front() ;
+                q.pop() ;
+                q.push(in) ; 
+                cnt ++ ;
+            }
+            q.pop() ;
         }
-        return v[0] ;
+        return q.front() ;
     }
 };
