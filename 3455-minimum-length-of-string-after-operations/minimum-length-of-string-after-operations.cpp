@@ -3,8 +3,8 @@ public:
     int minimumLength(string s) {
         int cnt   = 0 ;
         int freq[26] = {0} ;
-        for(int i = 0 ; i < s.length() ; i++){
-            freq[s[i] - 'a']++ ;
+        for(auto &ch : s){
+            freq[ch - 'a']++ ;
         }
         for(auto &it  : freq){
             if(it != 0){
