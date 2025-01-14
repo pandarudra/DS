@@ -1,6 +1,7 @@
+#define uset unordered_set
 class Solution {
 public:
-    int cntEquals(unordered_set<int>& a , unordered_set<int>& b){
+    int cntEquals(uset<int>& a , uset<int>& b){
         int  cnt = 0 ;
         for(auto &it : a){
             if(b.count(it)){
@@ -10,7 +11,7 @@ public:
         return  cnt ;
     }
     vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
-        unordered_set<int> sA , sB ;
+        uset<int> sA , sB ;
         int n = A.size() ;
         vector<int> prefixCnt(n , 0) ;
         for(int i = 0 ; i < n  ; i++){
