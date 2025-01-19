@@ -48,7 +48,7 @@ public:
 
         return trappedWater ;
     }
-    class Cell{
+    struct Cell{
         public:
         int height , row , col ;
         Cell(int h ,int r,int c) : height(h) , row(r) , col(c) {}
