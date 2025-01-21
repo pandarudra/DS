@@ -1,11 +1,12 @@
 #define ll long long 
+#define  inf LLONG_MAX
 class Solution {
 public:
     long long gridGame(vector<vector<int>>& grid) {
         int n = grid[0].size() ;
         vector<ll> suffix (n ,0) ;
         vector<ll> preffix (n ,0) ;
-        ll mx = LLONG_MIN , mn = LLONG_MAX ;
+        ll mx = -inf , mn = inf ;
 
         suffix[n - 1] = grid[0][n - 1] ;
         for(int i = n - 2 ; i > 0 ; i--){
