@@ -1,8 +1,13 @@
 #define ll long long 
 #define  inf LLONG_MAX
+#define fastio ios_base::sync_with_stdio(0) ; cin.tie(0) ; cout.tie(0) 
+
 class Solution {
 public:
     long long gridGame(vector<vector<int>>& grid) {
+
+        fastio ;
+
         int n = grid[0].size() ;
         vector<ll> suffix (n ,0) ;
         vector<ll> preffix (n ,0) ;
