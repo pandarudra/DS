@@ -25,7 +25,9 @@ public:
         vector<vector<int>> canReach(numCourses , vector<int>(numCourses , 0)) ;
         
         for(int i = 0 ; i < numCourses ; i++){
-            bfs(graph , canReach , vis , i) ;
+            if(!vis[i]){
+                bfs(graph , canReach , vis , i) ;
+            }
         }
         vector<bool> res ;
         for(auto &q : queries){
