@@ -1,7 +1,29 @@
 class Solution {
 private:
-    vector<int> precompute = {1,9,10,36,45,55,82,91,99,100,235,297,369,370,379,414,657,675,703,756,792,909,918,945,964,990,991,999,1000};
+    bool canBe(string sq , int n){
+        if(sq == "" && n == 0)return true ;
+        if(n < 0) return false ;
+
+        for(int i = 0 ; i < sq.length() ; i++){
+            string left = sq.substr(0 , i + 1) ;
+            string right = sq.substr(i + 1) ;
+            int del = stoi(left) ;
+            if(canBe(right , n - del))return true ;
+        }
+        return false ;
+    }
+    vector<int> precompute ;
+    void  calc(){
+        for(int i = 1 ; i <= 1000 ; i++){
+            if(canBe(to_string(i * i) , i)){
+                precompute.push_back(i) ;
+            }
+        }
+    }
     public:
+    Solution(){
+        calc() ;
+    }
     int punishmentNumber(int n) {
         int  s = 0 ;
         for(int i  = 0 ; i < precompute.size() ; i++){
