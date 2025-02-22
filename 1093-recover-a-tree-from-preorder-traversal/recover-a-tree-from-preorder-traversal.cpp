@@ -24,12 +24,12 @@ public:
                 d++ ;
                 i++ ;
             }
-            string num = "" ;
+            int num = 0 ;
             while(i < n && isdigit(traversal[i])){
-                num += traversal[i] ;
+                num = (num * 10) + (traversal[i] - '0') ;
                 i++ ;
             }
-            TreeNode* add = new TreeNode(stoi(num)) ;
+            TreeNode* add = new TreeNode(num) ;
             TreeNode* parent = mp[d - 1] ;
 
             if(parent->left){
