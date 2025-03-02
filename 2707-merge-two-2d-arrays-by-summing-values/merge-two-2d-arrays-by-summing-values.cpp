@@ -8,11 +8,7 @@ public:
         }
 
         for(auto&it : nums2){
-            if(mp[it[0]]){
-                mp[it[0]] += it[1] ;
-            }else{
-                mp[it[0]] = it[1] ;
-            }
+            mp[it[0]] += it[1] ;
         }
 
         vector<vector<int>> res ;
