@@ -12,6 +12,7 @@ public:
         ll rev = 0 ;
         while(y > 0){
             rev = rev * 10 + (y % 10) ;
+            if(rev < INT_MIN || rev > INT_MAX)return 0 ;
             y /= 10 ; 
         }
 
