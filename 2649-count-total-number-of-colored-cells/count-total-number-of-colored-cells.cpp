@@ -2,6 +2,11 @@
 class Solution {
 public:
     long long coloredCells(int n) {
-        return (2LL * n * n) - (2LL * n) + 1 ;
+        vector<ll> v(n + 1 , 0) ;
+        v[1] = 1 ;
+        for(ll i = 2 ; i <= n ; i++){
+            v[i] = v[i - 1] + (4 * (i - 1)) ;
+        }
+        return v[n] ;
     }
 };
