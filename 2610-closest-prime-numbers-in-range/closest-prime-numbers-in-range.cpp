@@ -26,8 +26,7 @@ public:
         for(int i = 1 ; i < primes.size() ; i++){
             if(primes[i] - primes[i - 1] < d){
                 d = primes[i] - primes[i - 1] ;
-                res[0] = primes[i - 1] ;
-                res[1] = primes[i] ;
+                res = {primes[i - 1] , primes[i]} ;
             }
         }
         return res ;
