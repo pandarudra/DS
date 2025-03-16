@@ -5,7 +5,7 @@ private:
     bool canRepair(vector<int>& ranks , ll mid , int cars){
         ll can = 0 ;
         for(auto& it : ranks){
-            can += (sqrt(mid * (1.0) / it)) ;
+            can += (ll)(sqrt(mid * (1.0) / it)) ;
         }
         return can >= cars ;
     }
