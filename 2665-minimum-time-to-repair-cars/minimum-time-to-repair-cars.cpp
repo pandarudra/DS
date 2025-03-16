@@ -11,7 +11,7 @@ private:
     }
 public:
     long long repairCars(vector<int>& ranks, int cars) {
-        ll low = 1LL , high = 1000000000000000LL ;
+        ll low = 1LL , high = *min_element(all(ranks)) * static_cast<ll>(cars) * cars ;
 
         while(low <= high){
             ll mid = low + (high - low) / 2 ;
