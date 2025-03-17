@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool divideArray(vector<int>& nums) {
-        int freq[1002] = {} ;
+        int freq[501] = {} ;
         for(auto& num : nums){
             freq[num]++ ;
         }
