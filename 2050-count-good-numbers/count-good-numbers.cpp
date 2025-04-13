@@ -16,8 +16,7 @@ public:
     int countGoodNumbers(long long n) {
         ll ne = ceil((1.0) * n / 2) ;
         ll no = n / 2 ;
-        ll res = 1LL ;
-        res = mpow(5 , ne) ;
+        ll res = mpow(5 , ne) ;
         res = (res * mpow(4 , no)) % MOD ;
         return res ;
     }
