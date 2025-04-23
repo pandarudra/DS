@@ -12,13 +12,13 @@ private:
 public:
     int countLargestGroup(int n) {
         umap<int , int> mp ;
-        for(int i = 1 ; i <= n ; i++){
-            mp[sumDgt(i)] ++ ;
-        }
         int mx = 0 ;
-        for(auto& [k , v] : mp){
-            mx = max(mx , v) ;
+        for(int i = 1 ; i <= n ; i++){
+            int k = sumDgt(i) ;
+            mp[k] ++ ;
+            mx = max(mx , mp[k]) ;
         }
+        
         int cnt = 0 ;
         for(auto& [k , v] : mp){
             if(v == mx){
