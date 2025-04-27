@@ -5,7 +5,7 @@ private:
     int fn(vector<int>& nums , int n , int k){
         if(n == 0) return 0 ;
         if(memo.count(n)) return memo[n] ;
-        int s = 0 ;
+        int s = INT_MIN ;
         for(int i = 2 ; i < k ; i++){
             int left = (n - i >= 0) ? fn(nums , n - i , k) + nums[n - i] : 0 ;
             s = max(s , left) ;
