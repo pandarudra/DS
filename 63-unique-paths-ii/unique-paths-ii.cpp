@@ -1,6 +1,14 @@
+#define umap unordered_map
 #define ipair pair<int , int>
+
+struct hash_pair {
+    size_t operator()(const ipair& p) const {
+        return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
+    }
+};
+
 class Solution {
-    map<ipair , int> memo ;
+    umap<ipair , int , hash_pair> memo ;
     int dp(vector<vector<int>>& OG , int m , int n){
 
         if(m < 0 || n < 0) return 0 ;
