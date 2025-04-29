@@ -4,14 +4,16 @@ class Solution {
 private:
     map<ipair , int> memo ;
     ll f(vector<vector<int>>& t , int m , int n){
+        if(m < 0 || n < 0 || n > m) return INT_MAX ;
+
         if(m == 0 && n == 0) return t[0][0] ;
 
         if(memo.count({m , n})) return memo[{m , n}] ;
 
-        ll top = (m - 1 >= 0 && n <= m) ?(ll) t[m][n] + f(t , m - 1 , n) : INT_MAX ;
-        ll right = (m - 1 >= 0 && n - 1 >= 0 && n <= m) ? (ll) t[m][n] + f(t , m - 1 , n - 1) : INT_MAX ;
+        ll top = (ll) f(t , m - 1 , n)  ;
+        ll right = (ll) f(t , m - 1 , n - 1)  ;
 
-        return memo[{m , n}] = min(top , right) ;
+        return memo[{m , n}] = t[m][n] + min(top , right) ;
     }
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
