@@ -1,11 +1,15 @@
 #define umap unordered_map
 class Solution {
 private:
+    // unequal string's map
     umap<string , int> unequal ;
+    // equal string's map
     umap<string , int> equal ;
 
 public:
     int longestPalindrome(vector<string>& words) {
+
+        // store frequency
         for(auto& word : words) {
             if(word[0] == word[1]) {
                 equal[word]++ ;
@@ -16,6 +20,7 @@ public:
 
         int length = 0 ;
 
+        // 1st go for unequal strings 
         for(auto& word : words) {
             string rev = "" ;
             rev += word[1] ;
@@ -38,6 +43,9 @@ public:
             }
         }
 
+        // now go for equal strings
+        // fL => Flag bit 
+
         int mxLen = 0 , fL = 0 ;
         for(auto& [k , v] : equal) {
             if(v == 1 && fL == 0) {
@@ -56,6 +64,7 @@ public:
            
         }
 
+        // if Flag bit still 0 we can add a single equal string
         if(fL == 0 && !equal.empty()) {
             for(auto& [k , v] : equal) {
                 if(v > 0) {
@@ -65,6 +74,7 @@ public:
             }
         }
 
+        // length = 2 * no. of strings
         length *= 2 ;
         mxLen *= 2 ;
 
