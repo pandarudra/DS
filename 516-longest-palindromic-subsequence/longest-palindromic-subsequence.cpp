@@ -7,6 +7,7 @@ public:
 
         int n = s.length() ;
 
+        // LCS of string and reversed string == Longest Pallindromic Subsequence
         vector<vector<int>> dp(n + 1 , vector<int>(n + 1 , - 1)) ;
 
         for(int i = 0 ; i <= n ; i++) {
