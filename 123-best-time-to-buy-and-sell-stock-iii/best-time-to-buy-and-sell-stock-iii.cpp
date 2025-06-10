@@ -21,7 +21,9 @@ public:
     int maxProfit(vector<int>& prices) {
          int N = prices.size() ;
 
-         vector<vector<vector<int>>> dp(N , vector<vector<int>>(2 , vector<int>(5 , -1))) ;
+         int mxLimit = 2 ;
+
+         vector<vector<vector<int>>> dp(N , vector<vector<int>>(2 , vector<int>(2 * mxLimit + 1 , -1))) ;
 
   
          return Transaction(prices , 0 , 1 , 4 , N , dp) ;
