@@ -1,28 +1,22 @@
 class Solution {
-private:
-    int f(int ind , int prev_ind , int N , vector<int>& nums , vector<vector<int>>& dp) {
-
-        if(ind == N) return 0 ;
-        if(dp[ind][prev_ind + 1] != -1) return dp[ind][prev_ind + 1] ;
-
-        // pick
-        int pick = 0 ; 
-        if(prev_ind == -1 || nums[ind] > nums[prev_ind]) {
-            pick = 1 + f(ind + 1 , ind , N , nums , dp) ;
-        }
-
-        // not pick
-        int notpick = f(ind + 1 , prev_ind , N , nums , dp) ;
-
-        return dp[ind][prev_ind + 1] = max(pick , notpick) ;
-
-    }
 public:
     int lengthOfLIS(vector<int>& nums) {
         int N = nums.size() ;
 
-        vector<vector<int>> dp(N , vector<int>(N + 1 , -1)) ;
+        vector<vector<int>> dp(N + 1 , vector<int>(N + 1 , 0)) ;
 
-        return f(0 , -1 , N , nums , dp) ;
+
+        for(int ind = N - 1 ; ind >= 0 ; ind--) {
+            for(int prev_ind = ind - 1 ; prev_ind >= -1 ; prev_ind--) {
+                int pick = 0 ; 
+                if(prev_ind == -1 || nums[ind] > nums[prev_ind]) {
+                    pick = 1 + dp[ind + 1][ind + 1] ;
+                }
+                 // not pick
+                 int notpick = dp[ind + 1][prev_ind + 1] ;
+                 dp[ind][prev_ind + 1] = max(pick , notpick) ;
+            }
+        }
+        return dp[0][-1 + 1] ;
     }
 };
