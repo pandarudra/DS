@@ -11,7 +11,7 @@ public:
          // previous => j
 
          for(int i = N - 1 ; i >= 0 ; i--) {
-            for(int j = N - 1 ; j >= -1 ; j--) {
+            for(int j = i - 1 ; j >= -1 ; j--) {
 
                 if(j == -1 || nums[i] > nums[j]) {
                     int take = 1 + dp[i + 1][i + 1] ;
