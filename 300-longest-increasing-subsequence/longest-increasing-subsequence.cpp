@@ -1,27 +1,30 @@
 class Solution {
-private:
-    int f(int i , int prev , int N , vector<int>& nums , vector<vector<int>>& dp) {
-        if(i >= N) return 0 ;
-        if(dp[i][prev + 1] != -1) return dp[i][prev + 1] ;
-
-        int cur = i ;
-        
-         if(prev == -1 || nums[cur] > nums[prev]) {
-            // take
-            int take = 1 + f(i + 1 , cur , N , nums , dp) ;
-            // not take
-            int _take = f(i + 1 , prev , N , nums , dp) ;
-
-            return dp[i][prev + 1] = max(take , _take) ;
-        }
-
-        return dp[i][prev + 1] = f(i + 1 , prev , N , nums , dp) ;
-    }
 public:
     int lengthOfLIS(vector<int>& nums) {
          int N = nums.size() ;
-         vector<vector<int>> dp(N , vector<int>(N + 1 , -1)) ;
+         vector<vector<int>> dp(N + 1 , vector<int>(N + 1 , -1)) ;
 
-         return f(0 , -1 , N , nums , dp) ;
+         // i == N
+         for(int i = 0 ; i <= N ; i++) dp[N][i] = 0 ;
+
+         // current => i 
+         // previous => j
+
+         for(int i = N - 1 ; i >= 0 ; i--) {
+            for(int j = N - 1 ; j >= -1 ; j--) {
+
+                if(j == -1 || nums[i] > nums[j]) {
+                    int take = 1 + dp[i + 1][i + 1] ;
+                    int nottake = dp[i + 1][j + 1] ;
+
+                    dp[i][j + 1] = max(take , nottake) ;
+                } else {
+                    dp[i][j + 1] = dp[i + 1][j + 1] ;
+                }
+            }
+         }
+         
+
+         return dp[0][0] ;
     }
 };
