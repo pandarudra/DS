@@ -5,8 +5,8 @@ private:
         if(dp[i][prev + 1] != -1) return dp[i][prev + 1] ;
 
         int cur = i ;
-        int before = prev == -1 ? -1e5 : nums[prev] ;
-         if(nums[cur] > before) {
+        
+         if(prev == -1 || nums[cur] > nums[prev]) {
             // take
             int take = 1 + f(i + 1 , cur , N , nums , dp) ;
             // not take
