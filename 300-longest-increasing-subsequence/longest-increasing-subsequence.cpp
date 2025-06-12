@@ -1,22 +1,21 @@
+#define all(t) (t).begin(),(t).end()
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
         int N = nums.size() ;
+        vector<int> t ;
+        t.push_back(nums[0]) ;
+        int cnt = 1 ;
 
-        vector<vector<int>> dp(N + 1 , vector<int>(N + 1 , 0)) ;
-
-
-        for(int ind = N - 1 ; ind >= 0 ; ind--) {
-            for(int prev_ind = ind - 1 ; prev_ind >= -1 ; prev_ind--) {
-                int pick = 0 ; 
-                if(prev_ind == -1 || nums[ind] > nums[prev_ind]) {
-                    pick = 1 + dp[ind + 1][ind + 1] ;
-                }
-                 // not pick
-                 int notpick = dp[ind + 1][prev_ind + 1] ;
-                 dp[ind][prev_ind + 1] = max(pick , notpick) ;
+        for(int i = 1 ; i < N ; i++) {
+            if(nums[i] > t.back()) {
+                t.push_back(nums[i]) ;
+                cnt++ ;
+            } else {
+                int index = lower_bound(all(t) , nums[i]) - t.begin() ;
+                t[index] = nums[i] ;
             }
         }
-        return dp[0][-1 + 1] ;
+        return cnt ;
     }
 };
