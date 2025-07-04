@@ -1,16 +1,12 @@
 typedef long long ll ;
 class Solution {
-private:
-  
 public:
     char kthCharacter(long long k, vector<int>& operations) {
        ll length = 1 ;
        vector<ll> Lvect ;
 
        for(auto& op : operations) {
-        if(op == 0) length *= 2 ;
-        else length += length ;
-
+        length *= 2 ;
         Lvect.push_back(length) ;
         if(length >= k) break ;
        }
