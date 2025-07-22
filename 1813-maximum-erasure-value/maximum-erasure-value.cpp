@@ -20,9 +20,9 @@ public:
                     i++ ;
                 }
             }
+            mx = max(mx , sum) ;
             v2i[nums[j]] = j ;
             j++ ;
-            mx = max(mx , sum) ;
         }
 
         return mx ;
