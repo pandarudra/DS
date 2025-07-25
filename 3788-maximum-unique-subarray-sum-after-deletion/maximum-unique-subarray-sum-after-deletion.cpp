@@ -5,6 +5,7 @@ public:
     int maxSum(vector<int>& nums) {
         int mx = 0 ;
         uset<int> s ;
+        int maxi = -100 ;
         for(auto num : nums) {
             if(num > 0) {
                 if(!s.count(num)) {
@@ -12,11 +13,9 @@ public:
                 } 
                 s.insert(num) ;
             }
+            maxi = max(maxi , num) ;
         }
 
-        if(mx == 0) {
-            mx += *max_element(all(nums)) ;
-        }
-        return mx ;
+        return mx == 0 ? maxi : mx ;
     }
 };
