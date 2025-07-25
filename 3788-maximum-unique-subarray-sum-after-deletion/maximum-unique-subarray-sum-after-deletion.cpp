@@ -8,9 +8,7 @@ public:
         int maxi = -100 ;
         for(auto num : nums) {
             if(num > 0) {
-                if(!s.count(num)) {
-                    mx += num ;
-                } 
+                if(!s.count(num)) mx += num ;
                 s.insert(num) ;
             }
             maxi = max(maxi , num) ;
