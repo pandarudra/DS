@@ -2,7 +2,6 @@ class Solution {
 private:
     int findSteps(int s , int t) {
         if(s == t) return 0 ;
-        if(t < s) return s - t ;
         int steps = 0 ;
         while(t > s){
             if(t % 2 != 0) {
@@ -12,7 +11,6 @@ private:
             t /= 2 ;
             steps++ ;
         }
-        
         return (s - t) + steps ;
     }
 public:
