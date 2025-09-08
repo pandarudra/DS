@@ -5,13 +5,7 @@ class Solution {
 
         string st = s + t ;
 
-        for(char ch : st) {
-            if(ch == '0') {
-                return false ;
-            }
-        }
-
-        return true ;
+        return st.find('0') == string::npos ;
     }
 public:
     vector<int> getNoZeroIntegers(int n) {
