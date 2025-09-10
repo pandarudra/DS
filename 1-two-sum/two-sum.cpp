@@ -9,6 +9,7 @@ public:
         // if i have x then i just have to find target - x
         // for that i can keep a hashmap
         // then for each x i have to check if target - x exists
+        // as only one unique solution exists hashmap is perfect
 
         umap<int , int> mp ;
 
