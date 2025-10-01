@@ -6,9 +6,8 @@ private:
         while(x >= y) {
             int m = x / y ;
             int b = y * m ;
-            int a = x - b + m ;
+            x = x - b + m ;
             canDrink += b ;
-            x = a ;
         }
      
         return x + canDrink ;
