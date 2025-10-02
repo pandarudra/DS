@@ -8,13 +8,18 @@ public:
             cnt += numBottles ;
             empty += numBottles ;
             numBottles = 0 ;
+
+            // update exchange and total bottles
             while(empty >= numExchange) {
                 empty -= numExchange ;
                 numExchange++ ;
                 numBottles++ ;
             }
+
             if(numBottles == 0 && empty < numExchange) break ;
         }
+
+
         return cnt ;
     }
 };
