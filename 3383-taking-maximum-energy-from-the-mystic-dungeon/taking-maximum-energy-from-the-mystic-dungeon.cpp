@@ -6,8 +6,8 @@ public:
         int N = energy.size() ;
         
         for(int i = N - 1 ; i >= 0 ; i--) {
-            int nextIndex = i + k ;
-            if(nextIndex < N) energy[i] += energy[nextIndex] ;
+            int nextRecentIndex = i + k ;
+            if(nextRecentIndex < N) energy[i] += energy[nextRecentIndex] ;
         }
 
         return *max_element(all(energy)) ;
