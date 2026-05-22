@@ -1,36 +1,37 @@
-#define all(v) (v).begin(),(v).end()
-#define uset unordered_set
-
+#define umap unordered_map
+#define all(S) (S).begin(),(S).end()
+#define pb push_back
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        sort(all(nums));
         int n = nums.size() ;
-        
-        vector<vector<int>> sol ;
-        for(int i = 0 ; i < n ; i++){
+        sort(all(nums)) ;
+        vector<vector<int>> ans ;
+        for(int i = 0 ; i < n ; i++) {
 
-            if(i > 0 && nums[i] == nums[i-1])continue ;
+            if(i > 0 && nums[i] == nums[i - 1]) continue ;
 
-            int a = -nums[i] ;
-            int low = i + 1 , high = n - 1 ;
-            while(low < high){
-                if(nums[low] + nums[high] == a){
-                    vector<int> v = {nums[i],nums[low],nums[high]} ;
-                    sol.push_back(v) ;
+            int sum = -nums[i] ;
+            int left = i + 1 , right = n - 1 ;
 
-                    while(low < high && nums[low] == nums[low + 1])low ++ ;
-                    while(low < high  && nums[high] == nums[high - 1])high -- ;
-                    low ++ ;
-                    high -- ;
-                }else if(nums[low] + nums[high] > a){
-                    high -- ;
-                }else if(nums[low] + nums[high] < a){
-                    low ++ ;
+            while(left < right) {
+                int theta = nums[left] + nums[right] ;
+                if(theta == sum) {
+                    ans.pb({nums[i] , nums[left] , nums[right]}) ;
+                    left++ ;
+                    right-- ;
+
+                    while(left < right &&  nums[left] == nums[left - 1]) left++ ;
+
+                    while(left < right && nums[right] == nums[right + 1]) right-- ;
+                    
+                } else if(theta > sum) {
+                    right-- ;
+                } else {
+                    left++ ;
                 }
-                
             }
         }
-        return sol ;
+        return ans ;
     }
 };
