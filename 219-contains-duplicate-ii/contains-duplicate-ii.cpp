@@ -8,11 +8,8 @@ public:
         for(int i = 1 ; i < n ; i++) {
             int v = mp[nums[i]] ;
             if(v != 0) {
-                if(v == -1) {
-                    if(i <= k) return true ;
-                }else {
-                    if(i - v <= k) return true ;
-                }
+               int offset = v == -1 ? 0 : -v ;
+               if(i + offset <= k) return true ;
             }
             mp[nums[i]] = i ;
         }
