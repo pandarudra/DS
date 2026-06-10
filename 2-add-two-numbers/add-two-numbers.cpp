@@ -26,10 +26,11 @@ public:
             if(r1 != nullptr) a = r1->val ;
 
             int rval = a + b + lov ;
-            int nodevalue = rval % 10 ;
             lov = rval / 10 ;
-            node->next = new ListNode(nodevalue) ;
+
+            node->next = new ListNode(rval % 10) ;
             node = node->next ;
+
             if(r1 != nullptr) r1 = r1->next ;
             if(r2 != nullptr) r2 = r2->next ;
         }
