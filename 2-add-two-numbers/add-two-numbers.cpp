@@ -18,31 +18,22 @@ public:
 
         ListNode* node = result ;  
         
-        while(r1 != nullptr && r2 != nullptr) {
-            int rval = r1->val + r2->val + lov ;
+        while(r1 != nullptr || r2 != nullptr) {
+
+            int a = 0 , b = 0 ;
+
+            if(r2 != nullptr) b = r2->val ;
+            if(r1 != nullptr) a = r1->val ;
+
+            int rval = a + b + lov ;
             int nodevalue = rval % 10 ;
             lov = rval / 10 ;
             node->next = new ListNode(nodevalue) ;
             node = node->next ;
-            r1 = r1->next ;
-            r2 = r2->next ;
+            if(r1 != nullptr) r1 = r1->next ;
+            if(r2 != nullptr) r2 = r2->next ;
         }
 
-        while(r1 != nullptr) {
-            int rval = r1->val + lov ;
-            node->next = new ListNode(rval % 10) ;
-            lov = (rval / 10) ;
-            node = node->next ;
-            r1 = r1->next ;
-        }
-
-        while(r2 != nullptr) {
-            int rval = r2->val + lov ;
-            node->next = new ListNode(rval % 10) ;
-            lov = (rval / 10) ;
-            node = node->next ;
-            r2 = r2->next ;
-        }
 
         if(lov) {
             node->next = new ListNode(lov) ;
