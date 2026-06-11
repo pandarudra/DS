@@ -1,26 +1,36 @@
-#define uset unordered_set
-using ln = ListNode ;
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 class Solution {
+    int getdiff(ListNode* a, ListNode* b) {
+        int len1 = 0, len2 = 0;
+
+        while(a) {
+            len1++;
+            a = a->next;
+        }
+
+        while(b) {
+            len2++;
+            b = b->next;
+        }
+
+        return len1 - len2;
+    }
+
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        uset<ln*> s ;
-        while(headA != nullptr) {
-            s.insert(headA) ;
-            headA = headA->next ;
+        int d = getdiff(headA, headB);
+
+        if(d > 0) {
+            while(d--) headA = headA->next;
+        } else {
+            while(d++) headB = headB->next;
         }
-        while(headB != nullptr) {
-            if(s.count(headB)) return headB ;
-            s.insert(headB) ;
-            headB = headB->next ;
+
+        while(headA && headB) {
+            if(headA == headB) return headA;
+            headA = headA->next;
+            headB = headB->next;
         }
-        return nullptr ;
+
+        return nullptr;
     }
 };
