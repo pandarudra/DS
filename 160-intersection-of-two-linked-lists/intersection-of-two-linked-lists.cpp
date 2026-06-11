@@ -1,3 +1,4 @@
+#define uset unordered_set
 using ln = ListNode ;
 /**
  * Definition for singly-linked list.
@@ -10,13 +11,15 @@ using ln = ListNode ;
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        uset<ln*> s ;
         while(headA != nullptr) {
-            ln *temp = headB ;
-            while(temp != nullptr) {
-                if(temp == headA) return headA ;
-                temp = temp->next ;
-            }
+            s.insert(headA) ;
             headA = headA->next ;
+        }
+        while(headB != nullptr) {
+            if(s.count(headB)) return headB ;
+            s.insert(headB) ;
+            headB = headB->next ;
         }
         return nullptr ;
     }
