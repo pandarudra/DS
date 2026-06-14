@@ -28,18 +28,23 @@ public:
         pair<ln , int> p = getmid(head) ;
         int n = p.second ;
         ln mid = p.first ;
-        vector<int> sum(n / 2) ;
         
         ln node = head ;
+
+        stack<int> st ;
+        
         for(int i = 0 ; i < n / 2 ; i++) {
-            sum[i] = node->val ;
+            st.push(node->val) ;
             node = node->next ;
         }
-        for(int i = (n / 2) - 1 ; i >= 0 ; i--) {
-            sum[i] += mid->val ;
+        
+        int mx = INT_MIN ;
+        while(mid != nullptr) {
+            mx = max(mx , mid->val + st.top()) ;
+            st.pop() ;
             mid = mid->next ;
         }
 
-        return *max_element(all(sum)) ;
+        return mx ;
     }
 };
