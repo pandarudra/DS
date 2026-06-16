@@ -1,20 +1,27 @@
-#define all(v) begin(v),end(v)
+#define all(v) (v).begin(),(v).end()
 class Solution {
 public:
     int findContentChildren(vector<int>& g, vector<int>& s) {
+        
         sort(all(g)) ;
         sort(all(s)) ;
-        int cnt = 0 ;
-        int si = 0 , gi = 0 ;
-        while(gi < g.size() && si < s.size()) {
-            if(s[si] >= g[gi]) {
-                cnt++ ;
-                si++ ;
-                gi++ ;
-            }else{
-                si++ ;
+        
+        int gn = g.size() ;
+        int sn = s.size() ;
+        
+        int i = 0 , j = 0 ;
+        int mx = 0 ;
+        
+        while(i < gn) {
+            int need = g[i] ;
+            int hv = j < sn ? s[j] : INT_MIN ;
+            if(need <= hv) {
+                mx++ ;
+                i++ ;
             }
-        }        
-        return cnt ;
+            if(j < sn) j++ ;
+            else break ;
+        }
+        return mx ;
     }
 };
