@@ -1,35 +1,21 @@
-#define ipair pair<int , int>
-#define umap unordered_map
-
+#define all(v) (v).begin(),(v).end()
 class Solution {
-private:
-    map<ipair , int> dp ;
-    int countMin(vector<int>& coins , int n , int amt){
-        if(n < 0) {
-            if(amt == 0) {
-                return 0 ;
-            }else{
-                return 1e9 ;
-            }
-        }
-        if(amt < 0) return 1e9 ;
+    int f(vector<int>& coins , int amt , vector<int>& dp) {
         if(amt == 0) return 0 ;
-
-        if(dp.count({n , amt})) return dp[{n , amt}] ;
-
-        int pick = 1 + countMin(coins , n - 1 , amt - coins[n]) ;
-        int notpick =  countMin(coins , n - 1 , amt) ;
-        int picktwice = 1 + countMin(coins , n , amt - coins[n]) ;
-
-        return dp[{n , amt}] = min({pick , notpick , picktwice}) ;
+        if(amt < 0) return INT_MAX ;
+        if(dp[amt] != -1) return dp[amt] ;
+        int mn = INT_MAX ;
+        for(auto c : coins) {
+            int left = f(coins , amt - c , dp) ;
+            if(left != INT_MAX) mn = min(mn , 1 + left) ;
+        }
+        return dp[amt] = mn ;
     }
 public:
     int coinChange(vector<int>& coins, int amount) {
         int n = coins.size() ;
-        int res = countMin(coins , n - 1 , amount) ;
-
-        if(res >= 1e9) return -1 ;
-
-        return res ;
+        vector<int> dp(amount + 1 , -1) ;
+        int r = f(coins , amount , dp) ;
+        return r == INT_MAX ? -1 : r  ;
     }
 };
