@@ -11,12 +11,11 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         int n = numbers.size() ;
-        int left = 0 , right = n - 1 ;
 
-        for(int i = left ; i <= right ; i++) {
+        for(int i = 0 ; i <= n - 1 ; i++) {
             int x = i ;
-            int y = getPos(numbers , i + 1 , right , target - numbers[i]) ;
-            if(y != -1 && numbers[x] + numbers[y] == target) return {x + 1 , y + 1} ;
+            int y = getPos(numbers , i + 1 , n - 1 , target - numbers[i]) ;
+            if(y != -1) return {x + 1 , y + 1} ;
         }
 
         return {-1 , -1} ;
