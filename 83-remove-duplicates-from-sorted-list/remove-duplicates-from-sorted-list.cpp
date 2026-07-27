@@ -13,16 +13,17 @@ using ln = ListNode ;
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ln *dummy = new ln(101) ;
-        ln *ptr = dummy ;
-        while(head != nullptr) {
-            if(ptr->val != head->val) {
-                ptr->next = new ln(head->val) ;
-                ptr = ptr->next ;
+        if(!head || !head->next) return head ;
+        ln *left , *right ;
+        left = head , right = head ;
+        while(right != nullptr) {
+            if(right->val != left->val) {
+                left = left->next ;
+                left->val = right->val ;
             }
-            head = head->next ;
+            right = right->next ;
         }
-        ptr->next = nullptr ;
-        return dummy->next ;
+        left->next = nullptr ;
+        return head ;
     }
 };
