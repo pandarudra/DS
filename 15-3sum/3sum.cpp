@@ -23,7 +23,7 @@ public:
         if(nums[0] > 0) return {} ;
 
         vector<vector<int>> ans ;
-        for(int i = 0 ; i < n ; i++) {
+        for(int i = 0 ; i < n - 1 ; i++) {
             if(i > 0 && nums[i] == nums[i - 1]) continue ;
 
             int x = nums[i] ;
