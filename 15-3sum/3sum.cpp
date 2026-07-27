@@ -8,8 +8,8 @@ class Solution {
                 ans.push_back({-t , v[left] , v[right]}) ;
                 left++ ;
                 right-- ;
-                 while(left < v.size() && v[left] == v[left - 1]) left++ ;
-                 while(right >= 0 && v[right] == v[right + 1]) right-- ;
+                while(left < v.size() && v[left] == v[left - 1]) left++ ;
+                while(right >= 0 && v[right] == v[right + 1]) right-- ;
             }
             else if(sum < t) left++ ;
             else right-- ;
