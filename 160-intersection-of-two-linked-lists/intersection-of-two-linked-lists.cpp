@@ -1,36 +1,48 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
-    int getdiff(ListNode* a, ListNode* b) {
-        int len1 = 0, len2 = 0;
-
-        while(a) {
-            len1++;
-            a = a->next;
+    int countLength(ListNode* node) {
+        int cnt = 0 ;
+        while(node != nullptr) {
+            cnt++ ;
+            node = node->next ;
         }
-
-        while(b) {
-            len2++;
-            b = b->next;
-        }
-
-        return len1 - len2;
+        return cnt ;
     }
-
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        int d = getdiff(headA, headB);
+        int na = countLength(headA) ;
+        int nb = countLength(headB) ;
 
-        if(d > 0) {
-            while(d--) headA = headA->next;
-        } else {
-            while(d++) headB = headB->next;
+        if(na > nb) {
+            int d = na - nb ;
+            while(d > 0) {
+                headA = headA->next ;
+                d-- ;
+            }
         }
 
-        while(headA && headB) {
-            if(headA == headB) return headA;
-            headA = headA->next;
-            headB = headB->next;
+
+        if(na < nb) {
+            int d = nb - na ;
+            while(d > 0) {
+                headB = headB->next ;
+                d-- ;
+            }
         }
 
-        return nullptr;
+        while(headA != nullptr && headB != nullptr) {
+            if(headA == headB) return headA ;
+            headA = headA->next ;
+            headB = headB->next ;
+        }
+
+        return nullptr ;
     }
 };
