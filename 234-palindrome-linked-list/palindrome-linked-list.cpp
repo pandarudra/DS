@@ -1,4 +1,3 @@
-using ln = ListNode* ;
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -10,7 +9,7 @@ using ln = ListNode* ;
  * };
  */
 class Solution {
-    int getlen(ln node) {
+    int getlen(ListNode* node) {
         int len = 0 ;
         while(node != nullptr) {
             len++ ;
@@ -18,49 +17,50 @@ class Solution {
         }
         return len ;
     }
+    ListNode* getmid(ListNode* node) {
+        ListNode *slow , *fast ;
+        slow = node , fast = node ;
+        while(fast != nullptr && fast->next != nullptr) {
+            slow = slow->next ;
+            fast = fast->next->next ;
+        }
+        return slow ;
+    }
+    ListNode* reversell(ListNode* head) {
+        ListNode* prev = nullptr ;
+        while(head != nullptr) {
+            ListNode* cn = head->next ;
+            head->next = prev ;
+            prev = head ;
+            head = cn ;
+        }
+        return prev ;
+    }
 public:
     bool isPalindrome(ListNode* head) {
         if(head == nullptr || head->next == nullptr) return true ;
+        int n = getlen(head) ;
+        ListNode* md = getmid(head) ;
+        if(n % 2 != 0) md = md->next ;
+        ListNode* nh = reversell(md) ;
 
-        // [1 ,0 , 1]
-        //  0  1   2
-
-        ln slow = head ;
-        ln fast = head ;
-
-        int len = getlen(head) ;
-
-        while(fast != nullptr && fast->next != nullptr) {
-            if(slow->next) slow = slow->next ;
-            if(fast->next) fast = fast->next ;
-            if(fast->next) fast = fast->next ;
-            
-        }
-
-        // slow = 1 , fast = 2
-
-
-        stack<int> st ;
-        ln node = head ;
-
-        while(node != slow) {
-            st.push(node->val) ;
+        ListNode* nhn = nh ;
+        ListNode* node = head ;
+        
+        int y = n ;
+        while(node != nullptr && nhn != nullptr) {
+            if(node->val != nhn->val) return false ;
+            y -= 2 ;
             node = node->next ;
+            nhn = nhn->next ;
         }
 
-        // node = 0 
-        // st = [1]
 
-        if(len % 2 != 0) slow = slow->next ;
+        ListNode* x = reversell(nh) ;
 
-        while(!st.empty() && slow != nullptr) {
-            if(!st.empty() && slow->val == st.top()) {
-                st.pop() ;
-                slow = slow->next ;
-                continue ;
-            }
-            return false ;
-        }
-        return true ;
+        if(n % 2 != 0 && y == 1) return true ;
+        if(n % 2 == 0 && y == 0) return true ;
+
+        return false ;
     }
 };
