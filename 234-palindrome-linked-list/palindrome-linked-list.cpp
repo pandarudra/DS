@@ -47,10 +47,8 @@ public:
         ListNode* nhn = nh ;
         ListNode* node = head ;
         
-        int y = n ;
         while(node != nullptr && nhn != nullptr) {
             if(node->val != nhn->val) return false ;
-            y -= 2 ;
             node = node->next ;
             nhn = nhn->next ;
         }
@@ -58,9 +56,6 @@ public:
 
         ListNode* x = reversell(nh) ;
 
-        if(n % 2 != 0 && y == 1) return true ;
-        if(n % 2 == 0 && y == 0) return true ;
-
-        return false ;
+        return true ;
     }
 };
