@@ -1,11 +1,11 @@
 class Solution {
 
 
-    void dfs(int node ,  vector<int>& vis , vector<vector<int>>& graph) {
+    void dfs(int node ,  vector<int>& vis , vector<vector<int>>& isConnected) {
        vis[node] = 1 ;
-       for(int ngbr = 0 ; ngbr < graph.size() ; ngbr++) {
-        if(!vis[ngbr] && graph[node][ngbr]) {
-            dfs(ngbr , vis , graph) ;
+       for(int ngbr = 0 ; ngbr < isConnected.size() ; ngbr++) {
+        if(!vis[ngbr] && isConnected[node][ngbr]) {
+            dfs(ngbr , vis , isConnected) ;
         }
        }
     }
