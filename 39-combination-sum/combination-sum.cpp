@@ -16,7 +16,7 @@ class Solution {
 
         if(t < 0) return ;
 
-        while(i > 0 && a[i] == a[i - 1]) i++ ;
+        // while(i > 0 && a[i] == a[i - 1]) i++ ;
 
         // take 
         ds.push_back(a[i]) ;
