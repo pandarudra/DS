@@ -1,11 +1,17 @@
 class Solution {
 public:
     int fib(int n) {
-        vector<int> f(n + 1) ;
-        if(n > 0) f[1] = 1 ;
-        for(int i = 2 ; i <= n ; i++) {
-            f[i] = f[i - 1] + f[i - 2] ;
+        if(n == 0) return 0 ;
+        
+        int i , si ;
+        i = 0 , si = 1 ;
+
+        while(--n) {
+            int t = si ;
+            si += i ;
+            i = t ;
         }
-        return f[n] ;
+
+        return si ;
     }
 };
